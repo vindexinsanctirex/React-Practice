@@ -148,3 +148,74 @@ footer {
 .tarefa {
   animation: slideIn 0.3s ease;
 }
+
+header h1 {
+  color: #0a5f27; /* Cor padrão sem hover */
+  position: relative;
+  transition: all 0.7s ease;
+}
+
+header h1:hover {
+  background: linear-gradient(
+    90deg,
+    #0a5f27,
+    #157736,
+    #1e8d44,
+    #25a34f,
+    #4a0a5f,
+    #651576,
+    #7e1e8d,
+    #8f25a3
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbowFlow 5s ease infinite;
+}
+
+/* Remova a animação gradientFlow pois não será mais necessária */
+/* Mantenha apenas o rainbowFlow para o efeito hover */
+@keyframes rainbowFlow {
+  0% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: hue-rotate(180deg);
+  }
+  100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Adicione este novo efeito para o container do header */
+header {
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    transparent 30%,
+    rgba(10, 95, 39, 0.1) 70%,
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+  transform: translate(var(--mouse-x, 0), var(--mouse-y, 0));
+}
+
+header:hover::before {
+  opacity: 1;
+}
